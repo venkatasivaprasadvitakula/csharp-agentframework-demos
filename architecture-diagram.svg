@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1060" viewBox="0 0 1800 1060" role="img" aria-labelledby="title desc">
+  <title id="title">Local runner stages and extensibility</title>
+  <desc id="desc">Nine-stage local software factory pipeline with replaceable work-item, repository, agent, state-store, and presentation providers.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="dashArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8b949e"/>
+    </marker>
+    <style>
+      .bg { fill: #0d1117; }
+      .panel { fill: #161b22; stroke: #30363d; stroke-width: 2; rx: 14; }
+      .stage { fill: #17243a; stroke: #58a6ff; stroke-width: 2; rx: 10; }
+      .gate { fill: #30251a; stroke: #d29922; stroke-width: 2; rx: 10; }
+      .complete { fill: #1d2d24; stroke: #3fb950; stroke-width: 2; rx: 10; }
+      .extension { fill: #21262d; stroke: #a371f7; stroke-width: 2; rx: 10; }
+      .config { fill: #1f2933; stroke: #79c0ff; stroke-width: 2; rx: 10; }
+      .title { fill: #e6edf3; font: 700 30px "Segoe UI", Arial, sans-serif; }
+      .subtitle { fill: #8b949e; font: 16px "Segoe UI", Arial, sans-serif; }
+      .panelTitle { fill: #e6edf3; font: 700 21px "Segoe UI", Arial, sans-serif; }
+      .label { fill: #e6edf3; font: 700 16px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+      .small { fill: #c9d1d9; font: 13px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+      .muted { fill: #8b949e; font: 12px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+      .edge { fill: none; stroke: #58a6ff; stroke-width: 2.5; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #8b949e; stroke-width: 2; stroke-dasharray: 7 5; marker-end: url(#dashArrow); }
+      .loop { fill: none; stroke: #d29922; stroke-width: 2; marker-end: url(#dashArrow); }
+      .edgeLabel { fill: #d29922; font: 13px "Segoe UI", Arial, sans-serif; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1800" height="1060"/>
+  <text class="title" x="55" y="52">Local Runner - Stages and Extensibility</text>
+  <text class="subtitle" x="55" y="80">A durable, one-item-at-a-time pipeline with replaceable provider boundaries</text>
+
+  <rect class="panel" x="40" y="110" width="1720" height="480"/>
+  <text class="panelTitle" x="70" y="148">Execution stages</text>
+
+  <rect class="stage" x="70" y="190" width="170" height="90"/>
+  <text class="label" x="155" y="220">1. Intake</text>
+  <text class="small" x="155" y="244">Select one eligible</text>
+  <text class="small" x="155" y="263">work item</text>
+
+  <rect class="stage" x="270" y="190" width="170" height="90"/>
+  <text class="label" x="355" y="220">2. Claim</text>
+  <text class="small" x="355" y="244">Revision-test</text>
+  <text class="small" x="355" y="263">New to Active</text>
+
+  <rect class="stage" x="470" y="190" width="190" height="90"/>
+  <text class="label" x="565" y="220">3. Workspace</text>
+  <text class="small" x="565" y="244">Resolve repo, refresh cache,</text>
+  <text class="small" x="565" y="263">prepare isolated worktree</text>
+
+  <rect class="stage" x="690" y="190" width="170" height="90"/>
+  <text class="label" x="775" y="220">4. Plan</text>
+  <text class="small" x="775" y="244">Inspect repository</text>
+  <text class="small" x="775" y="263">and create plan</text>
+
+  <rect class="gate" x="890" y="190" width="190" height="90"/>
+  <text class="label" x="985" y="220">5. Approval gate</text>
+  <text class="small" x="985" y="244">Attach plan and wait</text>
+  <text class="small" x="985" y="263">for approval tag</text>
+
+  <rect class="stage" x="1110" y="190" width="180" height="90"/>
+  <text class="label" x="1200" y="220">6. Implement</text>
+  <text class="small" x="1200" y="244">Change code, build,</text>
+  <text class="small" x="1200" y="263">and run tests</text>
+
+  <rect class="stage" x="1320" y="190" width="180" height="90"/>
+  <text class="label" x="1410" y="220">7. Review loop</text>
+  <text class="small" x="1410" y="244">Review, fix,</text>
+  <text class="small" x="1410" y="263">and revalidate</text>
+
+  <rect class="stage" x="1170" y="390" width="190" height="90"/>
+  <text class="label" x="1265" y="420">8. Delivery</text>
+  <text class="small" x="1265" y="444">Commit, push,</text>
+  <text class="small" x="1265" y="463">and create PR</text>
+
+  <rect class="complete" x="1420" y="390" width="190" height="90"/>
+  <text class="label" x="1515" y="420">9. Completion</text>
+  <text class="small" x="1515" y="444">Persist result and</text>
+  <text class="small" x="1515" y="463">close work item</text>
+
+  <path class="edge" d="M240 235 L270 235"/>
+  <path class="edge" d="M440 235 L470 235"/>
+  <path class="edge" d="M660 235 L690 235"/>
+  <path class="edge" d="M860 235 L890 235"/>
+  <path class="edge" d="M1080 235 L1110 235"/>
+  <path class="edge" d="M1290 235 L1320 235"/>
+  <path class="edge" d="M1410 280 L1410 330 L1265 330 L1265 390"/>
+  <path class="edge" d="M1360 435 L1420 435"/>
+  <path class="loop" d="M1500 235 L1585 235 L1585 330 L1410 330 L1410 280"/>
+  <text class="edgeLabel" x="1540" y="222">issues found</text>
+  <text class="edgeLabel" x="1095" y="220">approved</text>
+
+  <rect class="config" x="70" y="390" width="900" height="90"/>
+  <text class="label" x="520" y="420">Configuration drives the pipeline</text>
+  <text class="small" x="520" y="444">Repository catalog, provider selection, paths, polling interval, timeouts,</text>
+  <text class="small" x="520" y="463">approval tag, autopilot limits, and review iteration limits</text>
+  <path class="dash" d="M520 390 L520 315 L775 315 L775 280"/>
+
+  <rect class="panel" x="40" y="620" width="1720" height="390"/>
+  <text class="panelTitle" x="70" y="658">Replaceable extension points</text>
+
+  <rect class="extension" x="70" y="700" width="300" height="180"/>
+  <text class="label" x="220" y="734">Work-item provider</text>
+  <text class="small" x="220" y="762">IWorkItemProvider</text>
+  <text class="small" x="220" y="783">IWorkItemCollaborationProvider</text>
+  <text class="muted" x="220" y="818">Azure DevOps today</text>
+  <text class="muted" x="220" y="839">GitHub, Jira, or another tracker later</text>
+  <text class="muted" x="220" y="860">Owns intake, state, comments, approval, PR</text>
+
+  <rect class="extension" x="400" y="700" width="310" height="180"/>
+  <text class="label" x="555" y="734">Repository and workspace</text>
+  <text class="small" x="555" y="762">IRepositoryCache</text>
+  <text class="small" x="555" y="783">IWorktreeManager / IGitDelivery</text>
+  <text class="muted" x="555" y="818">Git cache and worktrees today</text>
+  <text class="muted" x="555" y="839">Alternative checkout strategies later</text>
+  <text class="muted" x="555" y="860">Owns prepare, validate, commit, push</text>
+
+  <rect class="extension" x="740" y="700" width="300" height="180"/>
+  <text class="label" x="890" y="734">Agent provider</text>
+  <text class="small" x="890" y="762">IAgentProvider</text>
+  <text class="small" x="890" y="783">IAgentImplementationProvider</text>
+  <text class="muted" x="890" y="818">GitHub Copilot CLI today</text>
+  <text class="muted" x="890" y="839">Another local or remote agent later</text>
+  <text class="muted" x="890" y="860">Owns plan, implementation, review/fix</text>
+
+  <rect class="extension" x="1070" y="700" width="300" height="180"/>
+  <text class="label" x="1220" y="734">Run-state provider</text>
+  <text class="small" x="1220" y="762">IFactoryRunStore</text>
+  <text class="small" x="1220" y="783">Durable status and artifact contract</text>
+  <text class="muted" x="1220" y="818">SQLite today</text>
+  <text class="muted" x="1220" y="839">SQL or another durable store later</text>
+  <text class="muted" x="1220" y="860">Every stage is journaled</text>
+
+  <rect class="extension" x="1400" y="700" width="300" height="180"/>
+  <text class="label" x="1550" y="734">Presentation and telemetry</text>
+  <text class="small" x="1550" y="762">Console and static HTML dashboard</text>
+  <text class="small" x="1550" y="783">Read-only observers of run state</text>
+  <text class="muted" x="1550" y="818">Notifications, API, or richer UI later</text>
+  <text class="muted" x="1550" y="839">Does not own workflow decisions</text>
+  <text class="muted" x="1550" y="860">Can evolve independently</text>
+
+  <path class="dash" d="M220 700 L220 650 L155 650 L155 280"/>
+  <path class="dash" d="M555 700 L555 650 L565 650 L565 280"/>
+  <path class="dash" d="M890 700 L890 650 L775 650 L775 280"/>
+  <path class="dash" d="M1220 700 L1220 620 L355 620 L355 280"/>
+  <path class="dash" d="M1550 700 L1550 590 L1650 590 L1650 350 L1515 350 L1515 390"/>
+
+  <text class="subtitle" x="70" y="970">Core rule: orchestration owns the lifecycle; providers own integration details and can be replaced without rewriting the pipeline.</text>
+</svg>
